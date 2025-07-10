@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Taruhan Sixpack Nadir Jamal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f1f1f1;
+      padding: 40px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .vote-section {
+      margin-top: 30px;
+    }
+
+    button {
+      padding: 12px 24px;
+      margin: 10px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .yes {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .no {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    .results {
+      margin-top: 30px;
+      font-size: 18px;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      display: inline-block;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>Apakah Nadir Jamal Bisa Sixpack Bulan Depan?</h1>
+
+  <div class="vote-section">
+    <button class="yes" onclick="vote('yes')">🟢 Berhasil Sixpack</button>
+    <button class="no" onclick="vote('no')">🔴 Gagal Sixpack</button>
+  </div>
+
+  <div class="results" id="results">
+    <p>Total Vote Berhasil: <span id="yesVotes">0</span></p>
+    <p>Total Vote Gagal: <span id="noVotes">0</span></p>
+    <p><strong>Odds Berhasil: <span id="yesOdds">-</span></strong></p>
+    <p><strong>Odds Gagal: <span id="noOdds">-</span></strong></p>
+  </div>
+
+  <script>
+    let votes = {
+      yes: 0,
+      no: 0
+    };
+
+    function vote(option) {
+      votes[option]++;
+      updateResults();
+    }
+
+    function updateResults() {
+      const total = votes.yes + votes.no;
+
+      document.getElementById('yesVotes').textContent = votes.yes;
+      document.getElementById('noVotes').textContent = votes.no;
+
+      if (total === 0) {
+        document.getElementById('yesOdds').textContent = '-';
+        document.getElementById('noOdds').textContent = '-';
+        return;
+      }
+
+      // Contoh Odds: Total / Jumlah Vote
+      const yesOdds = (total / (votes.yes || 1)).toFixed(2);
+      const noOdds = (total / (votes.no || 1)).toFixed(2);
+
+      document.getElementById('yesOdds').textContent = yesOdds + 'x';
+      document.getElementById('noOdds').textContent = noOdds + 'x';
+    }
+  </script>
+</body>
+</html>
