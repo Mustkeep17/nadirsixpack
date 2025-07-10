@@ -1,2 +1,0 @@
-# nadirsixpack
-nadir sixpack web
